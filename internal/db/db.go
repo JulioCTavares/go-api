@@ -10,7 +10,7 @@ import (
 	"gorm.io/gorm"
 )
 
-func ConnectDB() *gorm.DB {
+func ConnectDB() (*gorm.DB, error) {
 	err := godotenv.Load()
 
 	if err != nil {
@@ -27,8 +27,9 @@ func ConnectDB() *gorm.DB {
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 
 	if err != nil {
-		log.Fatal("Not able to connect with database")
+		return nil, fmt.Errorf("falha ao conectar ao banco de dados: %w", err)
 	}
 
-	return db
+	fmt.Println("Conexão com o banco de dados bem-sucedida!")
+	return db, nil
 }
