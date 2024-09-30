@@ -13,7 +13,17 @@ func main() {
 
 	r := router.Router()
 
-	db.ConnectDB()
+	_, err := db.ConnectDB()
+
+	if err != nil {
+		log.Fatalf("Falha ao conectar ao banco de dados: %v", err)
+	}
+
+	err = db.RunMigrations()
+
+	if err != nil {
+		log.Fatal("Falha ao rodar a migração:", err)
+	}
 
 	log.Fatal(http.ListenAndServe(":4000", r))
 }
