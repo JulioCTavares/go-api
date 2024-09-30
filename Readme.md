@@ -24,7 +24,7 @@ Esta é uma API em desenvolvimento, criada para aplicar e aprofundar meus conhec
 1. **Clone o repositório**:
 
    ```bash
-
+    git clone https://github.com/JulioCTavares/go-api
    ```
 
 2. **Inicialize o módulo Go**:
